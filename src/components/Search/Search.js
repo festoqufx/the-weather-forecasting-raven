@@ -6,16 +6,20 @@ const Search = ({ onSearchChange }) => {
   const [searchValue, setSearchValue] = useState(null);
 
   const loadOptions = async (inputValue) => {
-    const citiesList = await fetchCities(inputValue);
+    try {
+      const citiesList = await fetchCities(inputValue);
 
-    return {
-      options: citiesList.data.map((city) => {
-        return {
-          value: `${city.latitude} ${city.longitude}`,
-          label: `${city.name}, ${city.countryCode}`,
-        };
-      }),
-    };
+      return {
+        options: citiesList.map((city) => {
+          return {
+            value: `${city.latitude} ${city.longitude}`,
+            label: `${city.name}, ${city.countryCode}`,
+          };
+        }),
+      };
+    } catch (error) {
+      return { options: [] };
+    }
   };
 
   const onChangeHandler = (enteredData) => {

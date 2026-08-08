@@ -22,11 +22,12 @@ function App() {
   const [todayForecast, setTodayForecast] = useState([]);
   const [weekForecast, setWeekForecast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
 
   const searchChangeHandler = async (enteredData) => {
     const [latitude, longitude] = enteredData.value.split(' ');
 
+    setError('');
     setIsLoading(true);
 
     const currentDate = transformDateFormat();
@@ -54,7 +55,10 @@ function App() {
         list: all_week_forecasts_list,
       });
     } catch (error) {
-      setError(true);
+      setTodayForecast([]);
+      setTodayWeather(null);
+      setWeekForecast(null);
+      setError(error.message || 'Something went wrong');
     }
 
     setIsLoading(false);
@@ -116,7 +120,7 @@ function App() {
       <ErrorBox
         margin="3rem auto"
         flex="inherit"
-        errorMessage="Something went wrong"
+        errorMessage={error}
       />
     );
   }

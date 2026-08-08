@@ -19,8 +19,8 @@ https://the-weather-forecasting.netlify.app
 
 - Make sure you already have `Node.js` and `npm` installed in your system.
 - You need an API key from [OpenWeatherMap](https://openweathermap.org/). After creating an account, [grab your key](https://home.openweathermap.org/api_keys).
-- Then, under the `src` directory, go to `api/OpenWeatherService` and replace `WEATHER_API_KEY` with your OpenWeatherMap API Key.
-  - **`api/OpenWeatherService.js`**: It contains the code related to the back-end of the application.
+- Create a `.env` file in the project root and add `REACT_APP_OPENWEATHER_API_KEY=your_api_key_here`.
+- The weather API integration lives in `src/api/OpenWeatherService.js`.
 
 <br/>
 
